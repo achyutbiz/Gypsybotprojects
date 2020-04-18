@@ -48,7 +48,9 @@ def messages():
         LOOP.run_until_complete(task)  
         return Response(status=201)  
     except Exception as exception:  
-        raise exception  
+        raise Response(status=405)  
+
+
 
 if __name__ == '__main__':
     app.run()
