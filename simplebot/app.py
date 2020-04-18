@@ -51,10 +51,4 @@ def messages():
         raise exception  
 
 if __name__ == '__main__':
-    import os
-    HOST = os.environ.get('SERVER_HOST', 'localhost')
-    try:
-        PORT = 3978
-    except ValueError:
-        PORT = 5555
-    app.run(HOST, PORT)
+    app.run()
