@@ -29,6 +29,10 @@
   <ItemGroup>
     <Compile Include="app.py" />
     <Compile Include="config\config_reader.py" />
+    <Compile Include="pandemic\covidh.py" />
+    <Compile Include="data_models\conversation_flow.py" />
+    <Compile Include="data_models\user_profile.py" />
+    <Compile Include="data_models\__init__.py" />
     <Compile Include="logger\logger.py" />
     <Compile Include="luis\luisApp.py" />
     <Compile Include="weather\weatherApp.py" />
@@ -58,10 +62,12 @@
     <Folder Include="config\" />
     <Folder Include="config\__pycache__\" />
     <Folder Include="conversationLogs\" />
+    <Folder Include="data_models\" />
     <Folder Include="logger\" />
     <Folder Include="logger\__pycache__\" />
     <Folder Include="luis\" />
     <Folder Include="luis\__pycache__\" />
+    <Folder Include="pandemic\" />
     <Folder Include="weather\" />
     <Folder Include="weather\__pycache__\" />
   </ItemGroup>
