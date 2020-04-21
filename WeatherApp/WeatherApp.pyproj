@@ -35,6 +35,7 @@
     <Compile Include="data_models\__init__.py" />
     <Compile Include="logger\logger.py" />
     <Compile Include="luis\luisApp.py" />
+    <Compile Include="pandemic\__init__.py" />
     <Compile Include="weather\weatherApp.py" />
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +45,7 @@
     <Content Include="conversationLogs\session1.txt" />
     <Content Include="logger\__pycache__\logger.cpython-37.pyc" />
     <Content Include="luis\__pycache__\luisApp.cpython-37.pyc" />
+    <Content Include="templates\emailtemplate.html" />
     <Content Include="requirements.txt" />
     <Content Include="weather\__pycache__\weatherApp.cpython-37.pyc" />
   </ItemGroup>
@@ -67,7 +69,10 @@
     <Folder Include="logger\__pycache__\" />
     <Folder Include="luis\" />
     <Folder Include="luis\__pycache__\" />
+    <Folder Include="maps\" />
+    <Folder Include="templates\" />
     <Folder Include="pandemic\" />
+    <Folder Include="Pandemic\__pycache__\" />
     <Folder Include="weather\" />
     <Folder Include="weather\__pycache__\" />
   </ItemGroup>

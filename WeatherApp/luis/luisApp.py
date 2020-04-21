@@ -11,9 +11,28 @@ import plotly.graph_objects as go
 import pandas as pd
 import requests
 import io
-from pandemic.covidh import CovidhDetails
+import os
+from botbuilder.core import CardFactory, MessageFactory
+from botbuilder.schema import (
+    ActionTypes,
+    Attachment,
+    AnimationCard,
+    AudioCard,
+    HeroCard,
+    VideoCard,
+    ReceiptCard,
+    SigninCard,
+    ThumbnailCard,
+    MediaUrl,
+    CardAction,
+    CardImage,
+    ThumbnailUrl,
+    Fact,
+    ReceiptItem,
+    AttachmentLayoutTypes,
+)
 
-from data_models import ConversationFlow, Question, UserProfile
+
 
 from botbuilder.core import (
     ActivityHandler,
@@ -24,6 +43,7 @@ from botbuilder.core import (
 )
 
 from data_models import ConversationFlow, Question, UserProfile
+from pandemic.covidh import CovidhDetails
 
 
 class ValidationResult:
@@ -187,54 +207,24 @@ class LuisConnect(ActivityHandler):
                 result = luis_result.properties["luisResult"]
                 covidh=covidh_info.get_covidh_info(profile.cityname)
                 
+                            
                 await turn_context.send_activity(f"{covidh}")
-
+                # Send email to User about prventive measures
+                covidh_info.sendMail(emailid,username)
                 await turn_context.send_activity(
-                    MessageFactory.text("we have sent all covid-19 cases to report in detail and prevention measure to your mail ")
-                )
-                await turn_context.send_activity(
-                    MessageFactory.text("Type anything to run the bot again.")
-                )
-                url = "https://www.trackcorona.live/api/countries.csv"
-                data=requests.get(url).content
-                ds = pd.read_csv(io.StringIO(data.decode('utf-8')))
-                df = ds.apply(lambda x: x.astype(str).str.upper())
-                maxval = int(df["confirmed"].max())
-                #chart
-                df['text'] = df['location'] +"\n Confirmed cases :"+ df["confirmed"]
-                
-                fig = go.Figure(data = go.Scattergeo(
-                    lon = df["longitude"],
-                    lat = df["latitude"],
-                    text = df["text"],
-                    mode = "markers",
-                    marker = dict(
-                        size = 12,
-                        opacity = 0.8,
-                        reversescale = True,
-                        autocolorscale = True,
-                        symbol = 'square',
-                        line = dict(
-                            width = 1,
-                            color = 'rgba(102, 102, 105)'
-                        ),
-                        cmin = 0,
-       
-                        cmax = maxval,
-                        colorbar_title = "COVID 19 Reported Cases"
-                    )
-                ))
-                fig.update_layout(
-                    title = "COVID19 Confirmed Cases Around the World",
-                    geo = dict(
-                        scope = "world",
-                        showland = True,
-                    )
+                    MessageFactory.text("we have sent all covid-19 cases report in detail and prevention measure to your mail ")
                 )
                 
+                message = MessageFactory.list([])
+                message.attachments.append(self.create_hero_card())
+                await turn_context.send_activity(message)
+                #await turn_context.send_activity(
+                #    MessageFactory.text(f"Please clear to look the demograph of corona virus across the world : {worldmap}")
+                #)
+                    
 
                 flow.last_question_asked = Question.NONE
-    
+    #Validations for inputs
     def _validate_name(self, user_input: str) -> ValidationResult:
         if not user_input:
             return ValidationResult(
@@ -267,7 +257,32 @@ class LuisConnect(ActivityHandler):
                 is_valid=False,
                 message="Please enter a city name that contains at least one character.",
             )
+        else:
+            covidh_info=CovidhDetails()
+            covidh=covidh_info.get_covidh_info(user_input)
+            if covidh=="No Data":
+                return ValidationResult(
+                is_valid=False,
+                message="Sorry no data available for the city / country name you have provide. Plesae try once again")
 
         return ValidationResult(is_valid=True, value=user_input)
+    #cards
+    def create_hero_card(self) -> Attachment:
+        card = HeroCard(
+            title="Covidh Coronavirus cases worldwide",
+            images=[
+                CardImage(
+                    url="https://sec.ch9.ms/ch9/7ff5/e07cfef0-aa3b-40bb-9baa-7c9ef8ff7ff5/buildreactionbotframework_960.jpg"
+                )
+            ],
+            buttons=[
+                CardAction(
+                    type=ActionTypes.open_url,
+                    title="Click Here",
+                    value="https://docs.microsoft.com/en-us/azure/bot-service/",
+                )
+            ],
+        )
+        return CardFactory.hero_card(card)
     
    
