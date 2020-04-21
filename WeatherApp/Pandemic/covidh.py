@@ -10,8 +10,6 @@ from flask_mail import Mail, Message
 import json
 import logging
 import os
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import Mail
 from string import Template
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
