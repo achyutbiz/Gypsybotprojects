@@ -15,7 +15,7 @@ loop = asyncio.get_event_loop()
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 
-bot_settings = BotFrameworkAdapterSettings("d5e5fb27-7577-4907-a99d-e9f1281fab61", "yR8/535s[/ttJkjGdW[]rn6BnxipZWz2")
+bot_settings = BotFrameworkAdapterSettings("90258c37-4e41-4894-a48f-0bd342d4bc1c", "bE.fFOCT=S5KJV8/tdHK6-GTil3C-Rn2")
 bot_adapter = BotFrameworkAdapter(bot_settings)
 
 # Create MemoryStorage and state
@@ -46,9 +46,8 @@ def renderTemmplate():
 
 @app.route("/")
 def chatbotInit():
-    covidh_info=CovidhDetails()
-    covidh_info.renderWorldCoronaMap()
-    return app.send_static_file('worldcorona.html')
+    
+    return "Welcome to Chatbot Project"
 
 @app.route("/api/messages", methods=["POST"])
 def messages():
