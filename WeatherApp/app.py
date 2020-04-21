@@ -14,8 +14,8 @@ app = Flask(__name__)
 loop = asyncio.get_event_loop()
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
-
-bot_settings = BotFrameworkAdapterSettings("90258c37-4e41-4894-a48f-0bd342d4bc1c", "bE.fFOCT=S5KJV8/tdHK6-GTil3C-Rn2")
+#90258c37-4e41-4894-a48f-0bd342d4bc1c,hAnl-4CMJ9mIj7b3bxTmuiMOdrNkb=[@
+bot_settings = BotFrameworkAdapterSettings("90258c37-4e41-4894-a48f-0bd342d4bc1c", "hAnl-4CMJ9mIj7b3bxTmuiMOdrNkb=[@")
 bot_adapter = BotFrameworkAdapter(bot_settings)
 
 # Create MemoryStorage and state
@@ -36,17 +36,10 @@ luis_bot_dialog = LuisConnect(CONVERSATION_STATE, USER_STATE)
 MEMORY = MemoryStorage()
 USER_STATE = UserState(MEMORY)
 CONVERSATION_STATE = ConversationState(MEMORY)
-@app.route('/maps/')
-def projects():
-    return render_template("maps/worldcorona.html", title = 'Covidh Coronavirus cases around world')
-@app.route('/templates/')
-def renderTemmplate():
-    return render_template("templates/emailtemplate.html", title = 'Email Template')
 
 
 @app.route("/")
 def chatbotInit():
-    
     return "Welcome to Chatbot Project"
 
 @app.route("/api/messages", methods=["POST"])
