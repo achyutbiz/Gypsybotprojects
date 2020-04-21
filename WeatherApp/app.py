@@ -15,7 +15,7 @@ loop = asyncio.get_event_loop()
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 
-bot_settings = BotFrameworkAdapterSettings("2e784c7e-30d4-4b0f-94a9-e363db97e6ca", "hA]5aBrRAxfpI-QISwco2emX[wp6?l9R")
+bot_settings = BotFrameworkAdapterSettings("d5e5fb27-7577-4907-a99d-e9f1281fab61", "yR8/535s[/ttJkjGdW[]rn6BnxipZWz2")
 bot_adapter = BotFrameworkAdapter(bot_settings)
 
 # Create MemoryStorage and state
