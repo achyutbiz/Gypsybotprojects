@@ -39,10 +39,6 @@ USER_STATE = UserState(MEMORY)
 CONVERSATION_STATE = ConversationState(MEMORY)
 
 
-@app.route("/")
-def index():
-    return "Welcome to chat bot project"
-
 @app.route("/api/messages", methods=["POST"])
 def messages():
     if "application/json" in request.headers["content-type"]:
