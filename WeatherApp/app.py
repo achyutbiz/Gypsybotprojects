@@ -41,7 +41,7 @@ CONVERSATION_STATE = ConversationState(MEMORY)
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return "Welcome to chat bot project"
 
 @app.route("/api/messages", methods=["POST"])
 def messages():
