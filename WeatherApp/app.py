@@ -15,6 +15,7 @@ loop = asyncio.get_event_loop()
 
 # Make the WSGI interface available at the top level so wfastcgi can get it.
 #90258c37-4e41-4894-a48f-0bd342d4bc1c,hAnl-4CMJ9mIj7b3bxTmuiMOdrNkb=[@
+#"90258c37-4e41-4894-a48f-0bd342d4bc1c", "hAnl-4CMJ9mIj7b3bxTmuiMOdrNkb=[@"
 bot_settings = BotFrameworkAdapterSettings("90258c37-4e41-4894-a48f-0bd342d4bc1c", "hAnl-4CMJ9mIj7b3bxTmuiMOdrNkb=[@")
 bot_adapter = BotFrameworkAdapter(bot_settings)
 
@@ -39,8 +40,8 @@ CONVERSATION_STATE = ConversationState(MEMORY)
 
 
 @app.route("/")
-def chatbotInit():
-    return "Welcome to Chatbot Project"
+def index():
+    return render_template('index.html')
 
 @app.route("/api/messages", methods=["POST"])
 def messages():

@@ -43,10 +43,12 @@
     <Content Include="config\__pycache__\config_reader.cpython-37.pyc" />
     <Content Include="conversationLogs\dummy" />
     <Content Include="conversationLogs\session1.txt" />
+    <Content Include="images\corona.PNG" />
     <Content Include="logger\__pycache__\logger.cpython-37.pyc" />
     <Content Include="luis\__pycache__\luisApp.cpython-37.pyc" />
     <Content Include="templates\emailtemplate.html" />
     <Content Include="requirements.txt" />
+    <Content Include="templates\index.html" />
     <Content Include="weather\__pycache__\weatherApp.cpython-37.pyc" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +67,7 @@
     <Folder Include="config\__pycache__\" />
     <Folder Include="conversationLogs\" />
     <Folder Include="data_models\" />
+    <Folder Include="images\" />
     <Folder Include="logger\" />
     <Folder Include="logger\__pycache__\" />
     <Folder Include="luis\" />

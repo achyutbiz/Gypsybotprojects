@@ -123,48 +123,46 @@ class CovidhDetails():
             return self.bot_says
 
 #Generate world corona map
-    def renderWorldCoronaMap():
-        try:
-            url = "https://www.trackcorona.live/api/countries.csv"
-            data=requests.get(url).content
-            ds = pd.read_csv(io.StringIO(data.decode('utf-8')))
-            df = ds.apply(lambda x: x.astype(str).str.upper())
-            maxval = int(df["confirmed"].max())
-            #chart
-            df['text'] = df['location'] +"\n Confirmed cases :"+ df["confirmed"]
+    def renderWorldCoronaMap(self):
+        url = "https://www.trackcorona.live/api/countries.csv"
+        data=requests.get(url).content
+        ds = pd.read_csv(io.StringIO(data.decode('utf-8')))
+        df = ds.apply(lambda x: x.astype(str).str.upper())
+        maxval = int(df["confirmed"].max())
+        #chart
+        df['text'] = df['location'] +"\n Confirmed cases :"+ df["confirmed"]
                 
-            fig = go.Figure(data = go.Scattergeo(
-                lon = df["longitude"],
-                lat = df["latitude"],
-                text = df["text"],
-                mode = "markers",
-                marker = dict(
-                    size = 12,
-                    opacity = 0.8,
-                    reversescale = True,
-                    autocolorscale = True,
-                    symbol = 'square',
-                    line = dict(
-                        width = 1,
-                        color = 'rgba(102, 102, 105)'
-                    ),
-                    cmin = 0,
+        fig = go.Figure(data = go.Scattergeo(
+            lon = df["longitude"],
+            lat = df["latitude"],
+            text = df["text"],
+            mode = "markers",
+            marker = dict(
+                size = 12,
+                opacity = 0.8,
+                reversescale = True,
+                autocolorscale = True,
+                symbol = 'square',
+                line = dict(
+                    width = 1,
+                    color = 'rgba(102, 102, 105)'
+                ),
+                cmin = 0,
        
-                    cmax = maxval,
-                    colorbar_title = "COVID 19 Reported Cases"
-                )
-            ))
-            fig.update_layout(
-                title = "COVID19 Confirmed Cases Around the World",
-                geo = dict(
-                    scope = "world",
-                    showland = True,
-                )
+                cmax = maxval,
+                colorbar_title = "COVID 19 Reported Cases"
             )
-            worldmapfile = 'maps/worldcorona.html'
-            fig.write_html(worldmapfile)
-        except:
-            return "Welcome to Chatbot Project"
+        ))
+        fig.update_layout(
+            title = "COVID19 Confirmed Cases Around the World",
+            geo = dict(
+                scope = "world",
+                showland = True,
+            )
+        )
+        worldmapfile = 'templates/index.html'
+        fig.write_html(worldmapfile)
+
 
 
             
