@@ -21,7 +21,7 @@ botbuilder-schema==4.8.0
 botframework-connector==4.8.0
 certifi==2019.11.28
 configparser==4.0.2
-cryptography==2.8
+cryptography==3.2
 cycler==0.10.0
 datedelta==1.3
 emoji==0.5.4
