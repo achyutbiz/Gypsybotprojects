@@ -59,7 +59,7 @@ recognizers-text-number-with-unit==1.0.2a2
 regex==2019.8.19
 requests==2.22.0
 requests-oauthlib==1.3.0
-urllib3==1.25.8
+urllib3==1.26.5
 Werkzeug==0.16.1
 wincertstore==0.2
 yarl==1.4.2
