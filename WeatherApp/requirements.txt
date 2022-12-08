@@ -19,7 +19,7 @@ botbuilder-core==4.8.0
 botbuilder-dialogs==4.8.0
 botbuilder-schema==4.8.0
 botframework-connector==4.8.0
-certifi==2019.11.28
+certifi==2022.12.7
 configparser==4.0.2
 cryptography==2.8
 cycler==0.10.0
